@@ -1,9 +1,12 @@
+import About from "./About";
+import Banner from "./Banner";
 
 
 const HomePage = () => {
     return (
-        <div className="h-screen bg-white">
-            Home Page
+        <div className=" bg-white">
+           <Banner></Banner>
+           <About></About>
         </div>
     );
 };

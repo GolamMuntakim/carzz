@@ -23,10 +23,6 @@ const Navbar = () => {
             path:'/blog'
         },
         {
-            title:"Blog",
-            path:'/blog'
-        },
-        {
             title:"Contact",
             path:'/contact'
         },
@@ -81,7 +77,7 @@ const Navbar = () => {
   <div className="navbar-end gap-4">
   <IoBagOutline className='text-2xl'/>
   <CiSearch className='text-2xl'/>
-    <a className="btn btn-outline btn-primary hover:text-white">Appointment</a>
+    <a className="btn btn-outline btn-primary ">Appointment</a>
   </div>
 </div>
         </div>
