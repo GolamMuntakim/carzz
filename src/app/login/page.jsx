@@ -1,9 +1,9 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import {signIn} from "next-auth/react"
+import {signIn, useSession} from "next-auth/react"
 import { FaFacebookSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 
 const page = () => {
     const router = useRouter()
+    const session = useSession()
     const handleLogin=async (event)=>{
         event.preventDefault();
         const email = event.target.email.value;
@@ -24,6 +25,16 @@ const page = () => {
         if(response.status === 200){
             router.push('/')
         }
+    }
+    const handleGoogleLogin= async(provider) =>{
+        const response = await signIn(provider)
+    }
+    const handleGithubLogin= (provider) =>{
+        const response =  signIn(provider,{redirect:false})
+       
+    }
+    if(session.status === 'authenticated'){
+        router.push('/')
     }
     return (
         <div className="container mx-auto bg-white py-24 px-24">
@@ -44,8 +55,8 @@ const page = () => {
                 </form>
                 <div className="flex gap-4 mt-4 justify-center">
                 <FaFacebookSquare />
-                <FaLinkedin />
-                <FaGoogle />
+                <button onClick={()=>handleGithubLogin('github')}>  <FaGithub /></button>
+               <button onClick={()=>handleGoogleLogin('google')}> <FaGoogle /></button>
                 </div>
                 <div className="flex text-sm mt-4 justify-center text-[#737373] gap-4">
                     Have an account?  <Link href="/signup" ><p className="text-[#FF3811] font-bold"> sign up </p></Link>
