@@ -1,32 +1,15 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { IoBagOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
+import { signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
-    const navItems =[
-        {
-            title:"Home",
-            path:'/'
-        },
-        {
-            title:"About",
-            path:'/about'
-        },
-        {
-            title:"Services",
-            path:'/services'
-        },
-        {
-            title:"Blog",
-            path:'/blog'
-        },
-        {
-            title:"Contact",
-            path:'/contact'
-        },
-    ]
+  const session = useSession()
+  console.log(session)
+    
     return (
         <div>
             <div className="navbar bg-base-100 text-slate-900">
@@ -78,11 +61,36 @@ const Navbar = () => {
   <IoBagOutline className='text-2xl'/>
   <CiSearch className='text-2xl'/>
     <a className="btn btn-outline btn-primary ">Appointment</a>
-   <Link href='/login'> <a className="btn  btn-primary text-white">Login</a></Link>
+   {
+    !session.data ? <Link href='/login'> <a className="btn  btn-primary text-white">Login</a></Link>:
+    <button className="btn  btn-info text-white" onClick={()=>signOut()}>LogOut</button>
+   }
   </div>
 </div>
         </div>
     );
 };
+const navItems =[
+  {
+      title:"Home",
+      path:'/'
+  },
+  {
+      title:"About",
+      path:'/about'
+  },
+  {
+      title:"Services",
+      path:'/services'
+  },
+  {
+      title:"Blog",
+      path:'/blog'
+  },
+  {
+      title:"Contact",
+      path:'/contact'
+  },
+]
 
 export default Navbar;

@@ -5,20 +5,25 @@ import {signIn} from "next-auth/react"
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+
 
 
 
 const page = () => {
+    const router = useRouter()
     const handleLogin=async (event)=>{
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-        const response = signIn('credentials',{
+        const response = await signIn('credentials',{
             email,
              password,
               redirect:false
         })
-        console.log(response)
+        if(response.status === 200){
+            router.push('/')
+        }
     }
     return (
         <div className="container mx-auto bg-white py-24 px-24">
