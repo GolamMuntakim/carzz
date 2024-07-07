@@ -7,8 +7,24 @@ import { FaGoogle } from "react-icons/fa";
 
 
 const page = () => {
-    const handleSignup=async ()=>{
-
+    const handleSignup=async (event)=>{
+        event.preventDefault();
+        const newUser ={
+            name: event.target.name.value,
+            email: event.target.email.value,
+            password: event.target.password.value,
+        }
+       const response = await fetch("http://localhost:3000/signup/api",{
+        method:"POST",
+        body:JSON.stringify(newUser),
+        headers:{
+            "content-type":"application/json"
+        }
+       })
+       console.log(response)
+       if(response.status === 200){
+        event.target.reset()
+       }
     }
     return (
         <div>

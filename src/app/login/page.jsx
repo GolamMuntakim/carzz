@@ -36,7 +36,7 @@ const page = () => {
                 <FaGoogle />
                 </div>
                 <div className="flex text-sm mt-4 justify-center text-[#737373] gap-4">
-                    Have an account?  <Link href="/signup" ><p className="text-[#FF3811] font-bold"> sign in </p></Link>
+                    Have an account?  <Link href="/signup" ><p className="text-[#FF3811] font-bold"> sign up </p></Link>
                 </div>
                 </div>
             </div>
