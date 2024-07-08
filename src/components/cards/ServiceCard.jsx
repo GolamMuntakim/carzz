@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 
@@ -13,7 +14,7 @@ const ServiceCard = ({service}) => {
                     <h2 className="card-title font-bold">{service.title}</h2>
                     <p className="font-bold text-[#FF3811] text-xl">price: ${service.price}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn  bg-transparent border-none text-[#FF3811] text-xl"><FaArrowRight /></button>
+                       <Link href={`/services/${service._id}`}> <button className="btn  bg-transparent border-none text-[#FF3811] text-xl"><FaArrowRight /></button></Link>
                     </div>
                 </div>
             </div>

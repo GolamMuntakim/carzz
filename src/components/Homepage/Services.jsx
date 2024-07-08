@@ -1,11 +1,18 @@
 import React from 'react';
-import {services} from '../../lib/services'
+
 import ServiceCard from '../cards/ServiceCard';
 
-const Services = () => {
-    console.log(services)
+const getServices = async() =>{
+    const res = await fetch('http://localhost:3000/services/api/get-all')
+    const services = res.json()
+    return services;
+}
+
+const Services = async() => {
+    const {services} = await getServices()
+  
     return (
-        <div className=''>
+        <div>
             <div className='text-center'>
                 <h1 className='text-[#FF3811]'>Service</h1>
                 <h1 className='font-bold text-5xl '>Our Service Area</h1>
@@ -13,7 +20,7 @@ const Services = () => {
             </div>
             <div className='container mx-auto mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6'>
                 {
-                    services.map((service)=>(
+                    services?.length>0 && services?.map((service)=>(
                         <ServiceCard key={service._id} service={service}></ServiceCard>
                     ))
                 }
