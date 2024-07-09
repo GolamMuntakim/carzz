@@ -1,7 +1,16 @@
+import { services } from "@/lib/services";
+import { getServicesDetails } from "@/services/getServices";
+import { deserialize } from "mongodb";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 
-const page = () => {
+export const metadata = {
+    title:"Details",
+    description: "Service Details Page"
+}
+const page = async ({params}) => {
+    const details = await getServicesDetails(params.id)
+    const {title, description, img, price, facility} = details.service;
     return (
         <div className="bg-white ">
             <div>
@@ -14,12 +23,20 @@ const page = () => {
             <div className="grid grid-cols-2 mt-10 w-[1000px] mx-auto gap-80">
                 <div className="w-[650px] p-10">
                     <div>
-                    <Image className="rounded-md" alt="engine" src="/assets/images/banner/3.jpg" height={100} width={550}></Image>
-                    <h1 className="mt-10 text-3xl font-bold">Unique Car Engine Service</h1>
-                    <p className="mt-10 text-[#737373] text-sm">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                    <Image className="rounded-md" alt="engine" src={img} height={100} width={550}></Image>
+                    <h1 className="mt-10 text-3xl font-bold">{title}</h1>
+                    <p className="mt-10 text-[#737373] text-sm">{description}</p>
                     </div>
                     <div className="mt-8 grid grid-cols-2 gap-8">
-                       <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
+                        {
+                            facility.map((item,index)=>(
+                                <div key={index} className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
+                        <h1 className="font-bold text-[#444444]">{item?.name}</h1>
+                        <p className="text-[#737373] text-sm">{item?.details}</p>
+                       </div>
+                            ))
+                        }
+                       {/* <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
                         <h1 className="font-bold text-[#444444]">Instant Car Services</h1>
                         <p className="text-[#737373] text-sm">It uses a dictionary of over 200<br /> Latin words, combined with a model <br /> sentence structures.</p>
                        </div>
@@ -34,7 +51,7 @@ const page = () => {
                        <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
                         <h1 className="font-bold text-[#444444]">Quality Cost Service</h1>
                         <p className="text-[#737373] text-sm">It uses a dictionary of over 200<br />Latin words, combined with a model<br />sentence structures.</p>
-                       </div>
+                       </div> */}
                     </div>
                     <div className="mt-8">
                         <p className="text-sm text-[#737373]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
@@ -143,7 +160,7 @@ const page = () => {
                            </div>
                         </div>
                         <div>
-                            <h1 className="text-2xl font-bold mt-10">price $250.00</h1>
+                            <h1 className="text-2xl font-bold mt-10">price ${price}</h1>
                             <button className="btn btn-primary mt-2 w-full text-white text-center">proceed Checkout</button>
                         </div>
                 </div>
