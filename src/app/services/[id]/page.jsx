@@ -2,6 +2,7 @@ import { services } from "@/lib/services";
 import { getServicesDetails } from "@/services/getServices";
 import { deserialize } from "mongodb";
 import Image from "next/image";
+import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 export const metadata = {
@@ -10,7 +11,7 @@ export const metadata = {
 }
 const page = async ({params}) => {
     const details = await getServicesDetails(params.id)
-    const {title, description, img, price, facility} = details.service;
+    const {title, description, img, price, facility,_id} = details.service;
     return (
         <div className="bg-white ">
             <div>
@@ -161,7 +162,7 @@ const page = async ({params}) => {
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold mt-10">price ${price}</h1>
-                            <button className="btn btn-primary mt-2 w-full text-white text-center">proceed Checkout</button>
+                            <Link href={`/check/${_id}`}><button className="btn btn-primary mt-2 w-full text-white text-center">proceed Checkout</button></Link>
                         </div>
                 </div>
             </div>
