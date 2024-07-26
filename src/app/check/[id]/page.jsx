@@ -2,16 +2,24 @@
 import { getServicesDetails } from '@/services/getServices';
 import { useSession } from 'next-auth/react';
 import  { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const page = ({params}) => {
     const {data} = useSession()
     const [service, setService] = useState({});
+    // useEffect(()=>{
+    //     const loadService = async() =>{
+    //         const details = await getServicesDetails(params.id)
+    //         setService(details.service);
+    //    }
+    // },[params])
     const loadService = async() =>{
          const details = await getServicesDetails(params.id)
          setService(details.service);
     }
     
      const{_id, title, description, img, price, facility} = service || {};
+     console.log(service)
     const handleBooking= async(event)=>{
         event.preventDefault()
         const newBooking={
@@ -21,7 +29,8 @@ const page = ({params}) => {
             date:event.target.date.value,
             serviceTitle : title,
             serviceId : _id,
-            price: price
+            price: price,
+            image: img
         }
         const response = await fetch('http://localhost:3000/check/api/new-booking',{
             method: 'POST',
@@ -35,6 +44,10 @@ const page = ({params}) => {
     useEffect(()=>{
         loadService()
     },[params])
+  
+    
+
+    
     return (
         <div className='bg-white'>
              <div>
@@ -48,11 +61,13 @@ const page = ({params}) => {
                   <div className='grid grid-cols-2 gap-4'>
                   <input defaultValue={data?.user?.name} type="text" name="name" placeholder=' Name' className='w-[350px] p-4 rounded-md' readOnly/>
                   <input defaultValue={new Date().getDate()} type="date" name="date"  className='w-[350px] p-4 rounded-md' />
-                  <input defaultValue={price} type="number" name="price"  className='w-[350px] p-4 rounded-md' readOnly/>
+                  <input 
+                   defaultValue={price}
+                   type="text" name="price"   className='w-[350px] p-4 rounded-md' readOnly/>
                   <input defaultValue={data?.user?.email} type="email" name="email" placeholder='Email' className='w-[350px] p-4 rounded-md' readOnly/>
                   </div>
                   <div className='mt-4 '>
-                    <textarea className='w-[700px] h-[200px] rounded-md' placeholder='your message' type="text" name="message"></textarea>
+                    <textarea className='w-[700px] h-[200px] rounded-md p-4' placeholder='your message' type="text" name="message"></textarea>
                   </div>
                   <button className='w-full btn btn-primary mt-4 text-white'>Order Confirm</button>
                 </form>
