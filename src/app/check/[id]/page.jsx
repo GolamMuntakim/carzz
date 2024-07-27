@@ -2,6 +2,7 @@
 import { getServicesDetails } from '@/services/getServices';
 import { useSession } from 'next-auth/react';
 import  { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const page = ({params}) => {
@@ -39,7 +40,10 @@ const page = ({params}) => {
                 "content-type" : "application/json"
             }
         })
-        console.log(response)
+        const res = await response?.json()
+        toast.success(res?.message)
+        event.target.reset()
+        console.log(res)
     }
     useEffect(()=>{
         loadService()

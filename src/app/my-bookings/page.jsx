@@ -24,7 +24,7 @@ const page = () => {
         }
       )
       const resp = await deleted.json()
-      console.log(resp)
+      // console.log(resp)
      if(resp?.response?.deletedCount > 0){
       loadData();
      }
@@ -61,7 +61,7 @@ const page = () => {
        bookings.map((booking, idx)=> (
             <tr key={idx}>
             <th>
-           <button onClick={()=>handleDelete(booking._id)} className='btn outline-none border-none'> <RxCrossCircled className='text-4xl'/></button>
+           <button onClick={()=>handleDelete(booking?._id)} className='btn outline-none border-none'> <RxCrossCircled className='text-4xl'/></button>
             </th>
             <td>
               <div className="flex items-center gap-3">
