@@ -7,14 +7,27 @@ import { RxCrossCircled } from "react-icons/rx";
 
 const page = () => {
     const session = useSession()
+    // console.table(session)
   const [bookings, setBookings] = useState([])
 
     const loadData = async() =>{
         const res = await fetch(`http://localhost:3000/my-bookings/api/${session?.data?.user?.email}`)
         const data = await res.json()
-        console.log(data)
+        // console.log(data)
         setBookings(data?.myBookings)
          
+    }
+    const handleDelete = async(id)=>{
+      const deleted = await fetch(`http://localhost:3000/my-bookings/api/delete-booking/${id}`,
+        {
+          method:"DELETE"
+        }
+      )
+      const resp = await deleted.json()
+      console.log(resp)
+     if(resp?.response?.deletedCount > 0){
+      loadData();
+     }
     }
     useEffect(()=>{
         loadData()
@@ -48,7 +61,7 @@ const page = () => {
        bookings.map((booking, idx)=> (
             <tr key={idx}>
             <th>
-           <button className='btn outline-none border-none'> <RxCrossCircled className='text-4xl'/></button>
+           <button onClick={()=>handleDelete(booking._id)} className='btn outline-none border-none'> <RxCrossCircled className='text-4xl'/></button>
             </th>
             <td>
               <div className="flex items-center gap-3">
