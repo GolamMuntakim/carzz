@@ -15,13 +15,13 @@ export const DELETE = async(request, {params})=>{
 export const PATCH = async(request, {params})=>{
     const db = await connectDB();
     const bookingsCollection = db.collection("bookings");
-    const {date, message} = await request.json()
+    const updateDoc = await request.json()
     try{
         const resp = await bookingsCollection.updateOne(
             {_id: new ObjectId(params.id)},
             {
                 $set:{
-                    date,message
+                    ...updateDoc
                 },
             },
             {

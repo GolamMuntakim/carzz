@@ -8,12 +8,7 @@ import Swal from 'sweetalert2';
 const page = ({params}) => {
     const {data} = useSession()
     const [service, setService] = useState({});
-    // useEffect(()=>{
-    //     const loadService = async() =>{
-    //         const details = await getServicesDetails(params.id)
-    //         setService(details.service);
-    //    }
-    // },[params])
+ 
     const loadService = async() =>{
          const details = await getServicesDetails(params.id)
          setService(details.service);

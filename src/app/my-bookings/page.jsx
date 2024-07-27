@@ -1,5 +1,6 @@
 "use client"
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { GrUpdate } from "react-icons/gr";
 import { RxCrossCircled } from "react-icons/rx";
@@ -87,7 +88,7 @@ const page = () => {
               <button className="btn btn-ghost btn-xs">{booking?.date}</button>
             </th>
             <th>
-              <button className="btn btn-ghost btn-4xl"><GrUpdate /></button>
+              <Link href={`/my-bookings/update/${booking?._id}`}><button className="btn btn-ghost btn-4xl"><GrUpdate /></button></Link>
             </th>
           </tr>
         ))
