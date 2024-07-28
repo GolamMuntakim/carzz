@@ -5,7 +5,7 @@ import {signIn, useSession} from "next-auth/react"
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 
 
@@ -13,6 +13,10 @@ import { useRouter } from "next/navigation";
 const page = () => {
     const router = useRouter()
     const session = useSession()
+    const searchParams = useSearchParams()
+    const path = searchParams.get("redirect");
+
+
     const handleLogin=async (event)=>{
         event.preventDefault();
         const email = event.target.email.value;
@@ -20,17 +24,26 @@ const page = () => {
         const response = await signIn('credentials',{
             email,
              password,
-              redirect:false
+              redirect:true,
+              callbackUrl: path ? path : '/'
         })
         if(response.status === 200){
             router.push('/')
         }
     }
     const handleGoogleLogin= async(provider) =>{
-        const response = await signIn(provider)
+        const response = await signIn(provider,{
+             redirect:true,
+              callbackUrl: path ? path : '/'
+        })
     }
     const handleGithubLogin= (provider) =>{
-        const response =  signIn(provider,{redirect:false})
+        const response =  signIn(provider
+            ,{
+                redirect:true,
+                callbackUrl: path ? path : '/'
+
+            })
        
     }
     if(session.status === 'authenticated'){
