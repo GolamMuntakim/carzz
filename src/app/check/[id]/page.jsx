@@ -42,7 +42,7 @@ const Page = ({params}) => {
     }
     useEffect(()=>{
         loadService()
-    },[params])
+    },[params,loadService])
   
     
 

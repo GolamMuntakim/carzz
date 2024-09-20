@@ -9,7 +9,7 @@ export const metadata = {
     title:"Details",
     description: "Service Details Page"
 }
-const page = async ({params}) => {
+const Page = async ({params}) => {
     const details = await getServicesDetails(params.id)
     const {title, description, img, price, facility,_id} = details.service;
     return (
@@ -170,4 +170,4 @@ const page = async ({params}) => {
     );
 };
 
-export default page;
+export default Page;

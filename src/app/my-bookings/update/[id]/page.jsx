@@ -5,7 +5,7 @@ import  { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const page = ({params}) => {
+const Page = ({params}) => {
     const {data} = useSession()
     const [booking, setBooking] = useState([]);
     const loadBooking = async () =>{
@@ -68,4 +68,4 @@ const page = ({params}) => {
     );
 };
 
-export default page;
+export default Page;
