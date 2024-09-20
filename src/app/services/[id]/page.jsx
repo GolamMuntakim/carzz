@@ -15,7 +15,7 @@ const Page = async ({params}) => {
     return (
         <div className="bg-white ">
             <div>
-                {/* <Image className="w-[1200px] h-[400px]  mx-auto brightness-50 rounded-md" alt="banner" src="/assets/images/banner/4.jpg" height={100} width={100}></Image> */}
+             
                 <h1 className="relative text-3xl font-bold bg-[url('/assets/images/banner/4.jpg')] w-[1200px] h-[300px]  mx-auto  rounded-md bg-cover bg-blend-darken text-[#fff] py-60 px-10">Service details</h1>
                 <div className="absolute top-[527px] right-[450px]">
                     <h1 className="relative w-[300px] pr-[50px] border-b-[50px] border-l-[50px] border-l-transparent border-r-[50px]  border-b-[#FF3811] border-transparent"><span className="absolute p-2 text-white font-bold">Home / service Details</span></h1>
@@ -37,29 +37,14 @@ const Page = async ({params}) => {
                        </div>
                             ))
                         }
-                       {/* <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
-                        <h1 className="font-bold text-[#444444]">Instant Car Services</h1>
-                        <p className="text-[#737373] text-sm">It uses a dictionary of over 200<br /> Latin words, combined with a model <br /> sentence structures.</p>
-                       </div>
-                       <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
-                        <h1 className="font-bold text-[#444444]">24/7 Quality Service</h1>
-                        <p className="text-[#737373] text-sm">It uses a dictionary of over 200<br />Latin words, combined with a model<br />sentence structures.</p>
-                       </div>
-                       <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
-                        <h1 className="font-bold text-[#444444]">Easy Customer Service</h1>
-                        <p className="text-[#737373] text-sm">It uses a dictionary of over 200<br />Latin words, combined with a model<br />sentence structures.</p>
-                       </div>
-                       <div className="bg-[#F3F3F3] p-6 w-72 rounded-md border-t-2 border-t-[#FF3811]">
-                        <h1 className="font-bold text-[#444444]">Quality Cost Service</h1>
-                        <p className="text-[#737373] text-sm">It uses a dictionary of over 200<br />Latin words, combined with a model<br />sentence structures.</p>
-                       </div> */}
+                     
                     </div>
                     <div className="mt-8">
-                        <p className="text-sm text-[#737373]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                        <p className="text-sm text-[#737373]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text. </p>
                     </div>
                     <div className="mt-8">
                         <h1 className="text-3xl font-bold">3 Simple Steps to Process</h1>
-                        <p className="text-sm text-[#737373] mt-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
+                        <p className="text-sm text-[#737373] mt-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text</p>
                     </div>
                     <div className="mt-10 grid grid-cols-3 gap-20">
                         <div className="w-[200px] bg-[#E8E8E8] flex flex-col justify-center items-center p-6 rounded-md">
