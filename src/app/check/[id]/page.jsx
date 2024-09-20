@@ -1,11 +1,11 @@
 "use client"
 import { getServicesDetails } from '@/services/getServices';
 import { useSession } from 'next-auth/react';
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const page = ({params}) => {
+const Page = ({params}) => {
     const {data} = useSession()
     const [service, setService] = useState({});
  
@@ -75,4 +75,4 @@ const page = ({params}) => {
     );
 };
 
-export default page;
+export default Page;
