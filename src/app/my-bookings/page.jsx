@@ -6,7 +6,7 @@ import { GrUpdate } from "react-icons/gr";
 import { RxCrossCircled } from "react-icons/rx";
 
 
-const page = () => {
+const Page = () => {
     const session = useSession()
     // console.table(session)
   const [bookings, setBookings] = useState([])
@@ -103,4 +103,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
